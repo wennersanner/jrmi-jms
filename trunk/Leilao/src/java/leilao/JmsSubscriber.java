@@ -43,7 +43,7 @@ public class JmsSubscriber implements MessageListener
     }
     public static void main(String[] args) throws Exception {
         if(args.length != 2)
-            new JmsSubscriber("ConnectionFactory","topic/flightStatus");
+            new JmsSubscriber("ConnectionFactory","topic/LeilaoStatus");
         else
             new JmsSubscriber(args[0], args[1]);
     } 

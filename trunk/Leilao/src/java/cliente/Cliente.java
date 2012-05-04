@@ -12,8 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author geovanevinicius
+ * @author Geovane Ferreira
  */
 public class Cliente {
 

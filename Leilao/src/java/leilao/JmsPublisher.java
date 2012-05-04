@@ -40,12 +40,11 @@ public class JmsPublisher
     public static void main(String[] args) throws Exception {
         JmsPublisher publisher;
         if(args.length != 2)
-            publisher = new JmsPublisher("ConnectionFactory", "topic/flightStatus");
+            publisher = new JmsPublisher("ConnectionFactory", "topic/LeilaoStatus");
         else
             publisher = new JmsPublisher(args[0], args[1]);
-            publisher.publish("30JUL08 1032 TAKEOFF JJ8011 FLN GRU"); Thread.sleep(5000);
-            publisher.publish("30JUL08 1120 LANDING RG2541 FLN POA"); Thread.sleep(5000);
-            publisher.publish("30JUL08 1155 TAKEOFF G94321 FLN CGH"); publisher.close();
+            publisher.publish("001 Mouse 10/0 1"); 
+            publisher.close();
             System.exit(0);
         }
 }

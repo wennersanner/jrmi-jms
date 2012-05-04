@@ -39,7 +39,11 @@ public class JmsSubscriber implements MessageListener
             System.out.println(text);
             String pesquisa = "Mouse";
             if(text.matches(".*" + pesquisa + ".*"))
+            {
                 System.out.println("Item encontrado");
+                
+                
+            }            
             else
                 System.out.println("Não contém encontrado");
         } 

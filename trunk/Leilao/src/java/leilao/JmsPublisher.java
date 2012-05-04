@@ -43,7 +43,8 @@ public class JmsPublisher
             publisher = new JmsPublisher("ConnectionFactory", "topic/LeilaoStatus");
         else
             publisher = new JmsPublisher(args[0], args[1]);
-            publisher.publish("001 Mouse 10/0 1"); 
+            publisher.publish("001 001 Mouse 10/0 1"); 
+            
             publisher.close();
             System.exit(0);
         }

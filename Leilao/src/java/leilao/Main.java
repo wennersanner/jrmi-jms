@@ -4,6 +4,9 @@
  */
 package leilao;
 
+import cliente.Cliente;
+import cliente.Servidor.Servidor;
+
 /**
  *
  * @author geovanevinicius
@@ -15,5 +18,8 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        meuRegistry mRegistry=new meuRegistry();
+        Servidor s=new Servidor(mRegistry.getRegistry());
+        Cliente cl=new Cliente(mRegistry.getRegistry());
     }
 }

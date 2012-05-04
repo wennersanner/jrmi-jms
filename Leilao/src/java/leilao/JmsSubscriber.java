@@ -32,9 +32,16 @@ public class JmsSubscriber implements MessageListener
     }
     public void onMessage(Message message) 
     {
-        try {
-            TextMessage textMsg = (TextMessage) message; String text = textMsg.getText(); 
+        try 
+        {
+            TextMessage textMsg = (TextMessage) message; 
+            String text = textMsg.getText(); 
             System.out.println(text);
+            String pesquisa = "Mouse";
+            if(text.matches(".*" + pesquisa + ".*"))
+                System.out.println("Item encontrado");
+            else
+                System.out.println("Não contém encontrado");
         } 
         catch (JMSException ex) 
         {

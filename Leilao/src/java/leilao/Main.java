@@ -21,6 +21,5 @@ public class Main {
         meuRegistry mRegistry=new meuRegistry();
         Servidor s=new Servidor(mRegistry.getRegistry());
         Cliente cl=new Cliente(mRegistry.getRegistry());
-        //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa
     }
 }

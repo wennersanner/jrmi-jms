@@ -23,6 +23,7 @@ public class ClienteLeilao implements MessageListener {
     private TopicConnection connect;
     private meuRegistry meuRegistry;
     private InterfaceLeiloeiro interfaceleiloeiro;
+    private boolean acheiLeilao=false;
     
     public ClienteLeilao(meuRegistry meuRegistry) throws NamingException, JMSException {
         Context jndiContext = new InitialContext();
@@ -45,9 +46,11 @@ public class ClienteLeilao implements MessageListener {
             System.out.println(text);
             String pesquisa = "Mouse";
             if (text.matches(".*" + pesquisa + ".*")) {
+                acheiLeilao=true;
                 try {
                     interfaceleiloeiro=(InterfaceLeiloeiro) meuRegistry.getRegistry().lookup("001");
-                } catch (RemoteException ex) {
+                }
+                catch (RemoteException ex) {
                     ex.printStackTrace();
                 } catch (NotBoundException ex) {
                     ex.printStackTrace();
@@ -58,12 +61,14 @@ public class ClienteLeilao implements MessageListener {
         }
     }
     
-    public void darNovoLance(InterfaceLeiloeiro interfaceLeiloeiro,int lance)
+    public void darNovoLance(int lance)
     {
+        if(acheiLeilao==true)
+                {
         try {
             interfaceleiloeiro.darLance(lance);
         } catch (RemoteException ex) {
             ex.printStackTrace();
-        }
+        }}
     }
 }

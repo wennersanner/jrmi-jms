@@ -22,7 +22,7 @@ public class meuRegistry {
     public meuRegistry()
     {
         try {
-            loRegistry=LocateRegistry.getRegistry();
+            loRegistry=LocateRegistry.getRegistry(1098);
         } catch (RemoteException ex) {
             Logger.getLogger(meuRegistry.class.getName()).log(Level.SEVERE, null, ex);
         }

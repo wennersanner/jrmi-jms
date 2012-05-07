@@ -7,6 +7,8 @@ package leilao;
 import java.rmi.AccessException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.jms.*;
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -23,8 +25,7 @@ public class ClienteLeilao implements MessageListener {
     private TopicConnection connect;
     private meuRegistry meuRegistry;
     private InterfaceLeiloeiro interfaceleiloeiro;
-    private boolean acheiLeilao=false;
-    
+       
     public ClienteLeilao(meuRegistry meuRegistry) throws NamingException, JMSException {
         Context jndiContext = new InitialContext();
         TopicConnectionFactory factory = (TopicConnectionFactory) jndiContext.lookup(factoryName);
@@ -46,9 +47,10 @@ public class ClienteLeilao implements MessageListener {
             System.out.println(text);
             String pesquisa = "Mouse";
             if (text.matches(".*" + pesquisa + ".*")) {
-                acheiLeilao=true;
-                try {
+                try 
+                {
                     interfaceleiloeiro=(InterfaceLeiloeiro) meuRegistry.getRegistry().lookup("001");
+                    
                 }
                 catch (RemoteException ex) {
                     ex.printStackTrace();
@@ -61,14 +63,12 @@ public class ClienteLeilao implements MessageListener {
         }
     }
     
-    public void darNovoLance(int lance)
-    {
-        if(acheiLeilao==true)
-                {
+public void darNovoLance(int lance)
+{
         try {
             interfaceleiloeiro.darLance(lance);
         } catch (RemoteException ex) {
-            ex.printStackTrace();
-        }}
-    }
+            Logger.getLogger(ClienteLeilao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
 }

@@ -11,6 +11,7 @@
             <test-roots>
                 <root id="test.src.dir" name="Pacotes de testes"/>
             </test-roots>
+            <included-library dirs="200">libs.swing-layout.classpath</included-library>
         </data>
     </configuration>
 </project>

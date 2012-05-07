@@ -7,6 +7,8 @@ package leilao;
 import java.rmi.AccessException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import javax.jms.JMSException;
 import javax.naming.NamingException;
 
@@ -17,13 +19,12 @@ import javax.naming.NamingException;
 public class Leiloeiro {
 
     private ProdutoLeilao produtoLeilao;
-    private meuRegistry meuRegistry;
+    private Registry meuRegistry;
     private String identificacaoProcesso;
     private JmsPublisher publicarLeilao;
 
-    public Leiloeiro(ProdutoLeilao produtoLeilao, meuRegistry meuRegistry, String identificacaoProcesso) {
-        this.produtoLeilao = produtoLeilao;
-        this.meuRegistry = meuRegistry;
+    public Leiloeiro(ProdutoLeilao produtoLeilao, meuRegistry mRegistry, String identificacaoProcesso) throws RemoteException {
+         this.produtoLeilao = produtoLeilao;
         this.identificacaoProcesso = identificacaoProcesso;
         try {
             publicarLeilao = new JmsPublisher("ConnectionFactory", "topic/LeilaoStatus");
@@ -32,13 +33,14 @@ public class Leiloeiro {
         } catch (NamingException ex) {
             ex.printStackTrace();
         }
-
+           
     }
 
-    public void publicarLeilao() {
-        InterfaceLeiloeiro refLeiloeiro = new ClasseServenteLeiloeiro(this);
+    public void publicarLeilao() throws RemoteException {
+        InterfaceLeiloeiro refLeiloeiro = new ClasseServenteLeiloeiro();
         try {
-            meuRegistry.getRegistry().bind(identificacaoProcesso, refLeiloeiro);
+            meuRegistry = LocateRegistry.getRegistry();
+            meuRegistry.bind(identificacaoProcesso, refLeiloeiro);
             publicarLeilao.publish(identificacaoProcesso + " " + produtoLeilao.getCodigo() + " " + produtoLeilao.getNome() + " " + produtoLeilao.getPrecoInicial() + "/" + produtoLeilao.getPrecoAtual() + " " + produtoLeilao.getTempoTerminoLeilao());
         } catch (RemoteException ex) {
             ex.printStackTrace();

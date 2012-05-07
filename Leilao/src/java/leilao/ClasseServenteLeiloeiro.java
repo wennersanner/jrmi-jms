@@ -5,24 +5,23 @@
 package leilao;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 /**
  *
  * @author tiago
  */
-public class ClasseServenteLeiloeiro implements InterfaceLeiloeiro{
+public class ClasseServenteLeiloeiro extends UnicastRemoteObject implements InterfaceLeiloeiro{
 
-    private Leiloeiro leiloeiro;
-    
-    public ClasseServenteLeiloeiro(Leiloeiro leiloeiro)
+    public ClasseServenteLeiloeiro() throws RemoteException
     {
-        this.leiloeiro=leiloeiro;
+        
     }
-    
     @Override
     public void darLance(int lance) throws RemoteException {
-        leiloeiro.verificarLance(lance);
+        
     }
+
     
     
 }

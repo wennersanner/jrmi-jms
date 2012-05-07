@@ -7,6 +7,7 @@ package leilao;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,14 +22,14 @@ public class meuRegistry {
     public meuRegistry()
     {
         try {
-            loRegistry=LocateRegistry.createRegistry(1099);
+            loRegistry=LocateRegistry.getRegistry();
         } catch (RemoteException ex) {
             Logger.getLogger(meuRegistry.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
     
-    Registry getRegistry()
+    public Registry getRegistry()
     {
         return loRegistry;
     }

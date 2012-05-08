@@ -26,6 +26,15 @@ public class Leiloeiro {
     private JmsPublisher publicarLeilao;
     private InterfaceLeiloeiro refLeiloeiro;
     private String nome;
+    /**
+     * Conecta via JMS
+     * Cria a calsse servente do leiloeiro
+     * 
+     * @param produtoLeilao Produto Leiloado
+     * @param mRegistry     meu Registry
+     * @param identificacaoProcesso Identificacao do Processo
+     * @throws RemoteException 
+     */
     
     public Leiloeiro(ProdutoLeilao produtoLeilao, meuRegistry mRegistry, String identificacaoProcesso) throws RemoteException {
         this.produtoLeilao = produtoLeilao;
@@ -41,7 +50,11 @@ public class Leiloeiro {
         refLeiloeiro = new ClasseServenteLeiloeiro(this);
         
     }
-
+    /**
+     * Responsavel por publicar o leilao 
+     * @return Mensagem JMS que foi postada
+     * @throws RemoteException 
+     */
     public String publicarLeilao() throws RemoteException {
         try {
             meuRegistry.getRegistry().rebind(identificacaoProcesso, refLeiloeiro);
@@ -53,7 +66,12 @@ public class Leiloeiro {
         }
             return (identificacaoProcesso + " " + produtoLeilao.getCodigo() + " " + produtoLeilao.getNome() + " " + produtoLeilao.getPrecoInicial() + "/" + produtoLeilao.getPrecoAtual() + " " + produtoLeilao.getTempoTerminoLeilao()+"\n");
     }
-
+    /**
+     * Responsavel por verificar lance recebido, e atulizar o valor atual
+     * caso seja maior que o valor maximo dos lances 
+     * @param nome Nome da pessoa que deu o lance
+     * @param lance Valor do lance dado
+     */
     public void verificarLance(String nome,int lance) {
         if (lance > produtoLeilao.getPrecoAtual()) {
             produtoLeilao.setPrecoAtual(lance);
@@ -65,21 +83,33 @@ public class Leiloeiro {
             }
         }
     }
-    
+    /**
+     * Publica o fim do leilao com o nome do vencedor, produto e valor negociado 
+     * @throws JMSException 
+     */
     public void publicarFimLeilao() throws JMSException
     {
         publicarLeilao.publish("O vencedor e "+this.nome+" "+produtoLeilao.getNome()+" "+produtoLeilao.getPrecoInicial()+"/"+produtoLeilao.getPrecoAtual());
     }
-    
+    /**
+     * Retorna nome 
+     * @return Nome da pessoa de maior lance dado 
+     */
     public String getNome()
     {
         return nome;
     }
-    
+    /**
+     * Retorna preco atual
+     * @return Retora o maior lance dado
+     */
     public int getPrecoAtual()
     {
         return produtoLeilao.getPrecoAtual();
     }
+    /**
+     * Fechar Publish
+     */
     public void closePublish()
     {
         try {

@@ -22,22 +22,22 @@ public class ClienteLeilao {
 
     private meuRegistry meuRegistry;
     private InterfaceLeiloeiro interfaceleiloeiro;
-    private String nome="teste";
-
+   
     public ClienteLeilao(meuRegistry meuRegistry) throws NamingException, JMSException {
         this.meuRegistry = meuRegistry;
+        
+    }
+
+    public void darNovoLance(String meuNome,String nome,int lance) {
         try {
-            interfaceleiloeiro = (InterfaceLeiloeiro) meuRegistry.getRegistry().lookup("002");
+            interfaceleiloeiro = (InterfaceLeiloeiro) meuRegistry.getRegistry().lookup(nome);
         } catch (RemoteException ex) {
             Logger.getLogger(ClienteLeilao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NotBoundException ex) {
             Logger.getLogger(ClienteLeilao.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    public void darNovoLance(int lance) {
         try {
-            interfaceleiloeiro.darLance(nome,lance);
+            interfaceleiloeiro.darLance(meuNome,lance);
         } catch (RemoteException ex) {
             Logger.getLogger(ClienteLeilao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -47,8 +47,5 @@ public class ClienteLeilao {
             return interfaceleiloeiro.getPrecoAtual();
     }
     
-    public String getNome()
-    {
-        return nome;
-    }
+    
 }

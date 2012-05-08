@@ -166,7 +166,7 @@ public class Form_Leiloeiro3 extends javax.swing.JFrame{
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 98, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -201,7 +201,7 @@ public class Form_Leiloeiro3 extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCriarLeilaoPressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoCriarLeilaoPressed
-        acompThread=new acompanhamentoThread(jTextArea1, jTextField1, jTextField2, jTextField3);
+        acompThread=new acompanhamentoThread(jTextArea1, jTextField1, jTextField2, jTextField3,edt_CodProduto);
         acompThread.start();
     }//GEN-LAST:event_botaoCriarLeilaoPressed
 

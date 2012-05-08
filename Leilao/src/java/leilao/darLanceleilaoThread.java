@@ -17,24 +17,14 @@ import javax.naming.NamingException;
  *
  * @author tiago
  */
-public class darLanceleilaoThread extends Thread implements Runnable{//,MessageListener {
+public class darLanceleilaoThread extends Thread implements Runnable{
 
     private JTextField jTextField1;
-    private String factoryName = "ConnectionFactory";
-    private String topicName = "topic/LeilaoStatus";
-    private TopicConnection connect;
     private ClienteLeilao cl;
     
     public darLanceleilaoThread(JTextField jTextField1) throws NamingException, JMSException
     {
         this.jTextField1=jTextField1;
-         Context jndiContext = new InitialContext();
-        TopicConnectionFactory factory = (TopicConnectionFactory) jndiContext.lookup(factoryName);
-        Topic topic = (Topic) jndiContext.lookup(topicName);
-        this.connect = factory.createTopicConnection();
-        TopicSession session = connect.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
-        TopicSubscriber subscriber = session.createSubscriber(topic);
-        connect.start();
         meuRegistry mRegistry = new meuRegistry();
         cl = new ClienteLeilao(mRegistry);
     }

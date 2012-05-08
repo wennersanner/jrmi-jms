@@ -202,12 +202,20 @@ public class Form_Leiloeiro3 extends javax.swing.JFrame{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Envento de criar leilão, é iniciado a thread que tratará de todo o restante do leilao
+     * e responsavel por atualizar o form;
+     * @param evt 
+     */
     private void botaoCriarLeilaoPressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoCriarLeilaoPressed
         acompThread=new acompanhamentoThread(jTextArea1, jTextField1, jTextField2, jTextField3,edt_CodProduto);
         acompThread.start();
     }//GEN-LAST:event_botaoCriarLeilaoPressed
-
+    
+    /**
+     * Envento terminar leilao, chama a funcao que seta o estado de continuar thread para falso;
+     * @param evt 
+     */
     private void botaoTerminarLeilaoPressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoTerminarLeilaoPressed
         acompThread.setContinuaLeilao(false);
     }//GEN-LAST:event_botaoTerminarLeilaoPressed

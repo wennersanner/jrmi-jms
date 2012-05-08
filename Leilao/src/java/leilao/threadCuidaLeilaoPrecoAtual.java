@@ -50,14 +50,19 @@ public class threadCuidaLeilaoPrecoAtual extends Thread implements Runnable,Mess
         cl = new ClienteLeilao(mRegistry);
         this.jTextField2=jTextField2;
     }
-    
+    /**
+     * Ao receber uma mensgem via JMS, a mesma é enviada a tela do Leilao;
+     * @param message 
+     */
     @Override
     public void onMessage(Message message) {
         TextMessage textMsg = (TextMessage) message;
         String text;
         try {
             text = textMsg.getText();
+            //Envia a mesnagem recebida para o form
             jTextArea.append(text+"\n");
+            //Barra de rolagem automatica
             jTextArea.setCaretPosition(jTextArea.getText().length());
             
         } catch (JMSException ex) {

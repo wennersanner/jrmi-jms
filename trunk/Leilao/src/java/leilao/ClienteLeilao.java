@@ -27,7 +27,7 @@ public class ClienteLeilao {
     public ClienteLeilao(meuRegistry meuRegistry) throws NamingException, JMSException {
         this.meuRegistry = meuRegistry;
         try {
-            interfaceleiloeiro = (InterfaceLeiloeiro) meuRegistry.getRegistry().lookup("001");
+            interfaceleiloeiro = (InterfaceLeiloeiro) meuRegistry.getRegistry().lookup("002");
         } catch (RemoteException ex) {
             Logger.getLogger(ClienteLeilao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NotBoundException ex) {

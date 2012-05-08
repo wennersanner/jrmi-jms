@@ -16,6 +16,6 @@ import java.rmi.RemoteException;
  */
 public interface InterfaceLeiloeiro extends Remote{
     
-    void darLance(String nome,int lance) throws RemoteException;
+    void darLance(InterfaceCliente refCli,String nome,int lance) throws RemoteException;
     int getPrecoAtual() throws RemoteException;
 }

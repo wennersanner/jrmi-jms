@@ -24,7 +24,7 @@ public class Form_Leilao extends javax.swing.JFrame {
      * Creates new form Form_Leilao
      */
      private darLanceleilaoThread daLanceleilaoThread;
-        
+     private threadCuidaLeilaoPrecoAtual theAtual;   
     public Form_Leilao() {
         initComponents();
         
@@ -209,7 +209,11 @@ public class Form_Leilao extends javax.swing.JFrame {
      */
     private void botaoPublicarLancePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPublicarLancePressed
         try {
-            daLanceleilaoThread = new darLanceleilaoThread(jTextField1,edt_CodigoProduto,edt_Nome);
+            try {
+                daLanceleilaoThread = new darLanceleilaoThread(jTextField1,edt_CodigoProduto,edt_Nome,theAtual);
+            } catch (RemoteException ex) {
+                Logger.getLogger(Form_Leilao.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } catch (NamingException ex) {
             Logger.getLogger(Form_Leilao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (JMSException ex) {
@@ -224,7 +228,7 @@ public class Form_Leilao extends javax.swing.JFrame {
      * @param evt 
      */
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-            threadCuidaLeilaoPrecoAtual theAtual;
+           
         try {
             theAtual = new threadCuidaLeilaoPrecoAtual(jTextArea1);
              theAtual.start();

@@ -25,10 +25,12 @@ public class ClienteLeilao {
 
     private meuRegistry meuRegistry;
     private InterfaceLeiloeiro interfaceleiloeiro;
-   
-    public ClienteLeilao(meuRegistry meuRegistry) throws NamingException, JMSException {
+    private InterfaceCliente refCliente;
+    private threadCuidaLeilaoPrecoAtual threadCuidaLeilaoPrecoAtual;
+    
+    public ClienteLeilao(meuRegistry meuRegistry) throws NamingException, JMSException, RemoteException {
         this.meuRegistry = meuRegistry;
-        
+        refCliente=new ClasseServenteInterfaceLeilao(this);
     }
 
     public void darNovoLance(String meuNome,String nome,int lance) {
@@ -40,15 +42,30 @@ public class ClienteLeilao {
             Logger.getLogger(ClienteLeilao.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            interfaceleiloeiro.darLance(meuNome,lance);
+            interfaceleiloeiro.darLance(refCliente,meuNome,lance);
+        
         } catch (RemoteException ex) {
             Logger.getLogger(ClienteLeilao.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+    
     }
 
+    public InterfaceCliente getServ()
+    {
+        return refCliente;
+    }
     public int getPreco() throws RemoteException {
             return interfaceleiloeiro.getPrecoAtual();
     }
     
+    public String notificacao(String texto)
+    {
+        return texto;
+    }
     
+    public threadCuidaLeilaoPrecoAtual getThread()
+    {
+        return threadCuidaLeilaoPrecoAtual;
+    }
 }

@@ -32,10 +32,10 @@ public class Form_MenuInicial extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Leil„o"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Leilao"));
 
         jButton1.setText("Criar Leillao");
-        jButton1.setName("btn_CriarLeil„o"); // NOI18N
+        jButton1.setName("btn_CriarLeil√£o"); // NOI18N
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 botaoCriarLeilaoClicked(evt);

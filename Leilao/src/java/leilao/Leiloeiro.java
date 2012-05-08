@@ -60,15 +60,9 @@ public class Leiloeiro {
             }
         }
     }
-
-    public static void main(String[] args) throws InterruptedException, RemoteException, AlreadyBoundException, NamingException, JMSException {
-        meuRegistry mRegistry = new meuRegistry();
-        ProdutoLeilao pl = new ProdutoLeilao(1, 10, 10, "Mouse", 60);
-        Leiloeiro leiloeiro = new Leiloeiro(pl, mRegistry, "001");
-        while (true) {
-            leiloeiro.publicarLeilao();
-            Thread.sleep(2000);
-        }
-
+    
+    public int getPrecoAtual()
+    {
+        return produtoLeilao.getPrecoAtual();
     }
 }

@@ -22,6 +22,7 @@ public class Form_Leilao extends javax.swing.JFrame {
         
     public Form_Leilao() {
         initComponents();
+        
     }
 
     /**
@@ -181,20 +182,19 @@ public class Form_Leilao extends javax.swing.JFrame {
 
     private void botaoPublicarLancePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPublicarLancePressed
         try {
-            daLanceleilaoThread = new darLanceleilaoThread(jTextField1,jTextArea1);
-            daLanceleilaoThread.start();
+            daLanceleilaoThread = new darLanceleilaoThread(jTextField1);
         } catch (NamingException ex) {
             Logger.getLogger(Form_Leilao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (JMSException ex) {
             Logger.getLogger(Form_Leilao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
+        } 
+        daLanceleilaoThread.start();
     }//GEN-LAST:event_botaoPublicarLancePressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try {
-            daLanceleilaoThread = new darLanceleilaoThread(jTextField1,jTextArea1);
+            threadCuidaLeilaoPrecoAtual theAtual=new threadCuidaLeilaoPrecoAtual(jTextArea1, jTextField2);
+            theAtual.start();
         } catch (NamingException ex) {
             Logger.getLogger(Form_Leilao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (JMSException ex) {

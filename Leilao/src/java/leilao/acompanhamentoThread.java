@@ -37,6 +37,7 @@ public class acompanhamentoThread extends Thread implements Runnable{
             while (true) {
              //   leiloeiro.publicarLeilao();
          jTextArea1.append(leiloeiro.publicarLeilao());
+         jTextArea1.setCaretPosition(jTextArea1.getText().length());
                 try {
                     Thread.sleep(2000);
                 } catch (InterruptedException ex) {

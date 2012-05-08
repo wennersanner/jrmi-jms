@@ -32,7 +32,7 @@ public class threadCuidaLeilaoPrecoAtual extends Thread implements Runnable,Mess
     private ClienteLeilao cl;
     private JTextField jTextField2;
     
-    public threadCuidaLeilaoPrecoAtual(JTextArea jTextArea,JTextField jTextField2) throws NamingException, JMSException, RemoteException, InterruptedException
+    public threadCuidaLeilaoPrecoAtual(JTextArea jTextArea) throws NamingException, JMSException, RemoteException, InterruptedException
     {
          Context jndiContext = new InitialContext();
         TopicConnectionFactory factory = (TopicConnectionFactory) jndiContext.lookup(factoryName);
@@ -56,11 +56,7 @@ public class threadCuidaLeilaoPrecoAtual extends Thread implements Runnable,Mess
             text = textMsg.getText();
             jTextArea.append(text+"\n");
             jTextArea.setCaretPosition(jTextArea.getText().length());
-            try {
-                jTextField2.setText(""+cl.getPreco());
-            } catch (RemoteException ex) {
-                Logger.getLogger(darLanceleilaoThread.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            
         } catch (JMSException ex) {
             ex.printStackTrace();
         }

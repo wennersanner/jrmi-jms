@@ -20,27 +20,30 @@ import javax.naming.NamingException;
  */
 public class ClienteLeilao {
 
-    private String factoryName = "ConnectionFactory";
-    private String topicName = "topic/LeilaoStatus";
-    private TopicConnection connect;
     private meuRegistry meuRegistry;
     private InterfaceLeiloeiro interfaceleiloeiro;
-       
+
     public ClienteLeilao(meuRegistry meuRegistry) throws NamingException, JMSException {
-        this.meuRegistry=meuRegistry;
+        this.meuRegistry = meuRegistry;
+        try {
+            interfaceleiloeiro = (InterfaceLeiloeiro) meuRegistry.getRegistry().lookup("001");
+        } catch (RemoteException ex) {
+            Logger.getLogger(ClienteLeilao.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NotBoundException ex) {
+            Logger.getLogger(ClienteLeilao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
-    
-public void darNovoLance(int lance)
-{
-        
+    public void darNovoLance(int lance) {
         try {
-            interfaceleiloeiro=(InterfaceLeiloeiro) meuRegistry.getRegistry().lookup("001");
             interfaceleiloeiro.darLance(lance);
         } catch (RemoteException ex) {
             Logger.getLogger(ClienteLeilao.class.getName()).log(Level.SEVERE, null, ex);
-        }  catch (NotBoundException ex) {
-                    ex.printStackTrace();
-                }
-}
+        }
+    }
+
+    public int getPreco() throws RemoteException {
+            return interfaceleiloeiro.getPrecoAtual();
+    }
 }

@@ -24,5 +24,10 @@ public class ClasseServenteLeiloeiro extends UnicastRemoteObject implements Inte
     public void darLance(int lance) throws RemoteException {
         leiloeiro.verificarLance(lance);
     }
+
+    @Override
+    public int getPrecoAtual() throws RemoteException {
+        return leiloeiro.getPrecoAtual();
+    }
     
 }

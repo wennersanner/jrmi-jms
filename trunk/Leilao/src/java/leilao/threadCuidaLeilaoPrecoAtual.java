@@ -4,6 +4,8 @@
  */
 package leilao;
 
+import javax.jms.Message;
+import javax.jms.MessageListener;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import java.rmi.RemoteException;
@@ -17,31 +19,52 @@ import javax.naming.NamingException;
  *
  * @author tiago
  */
-public class darLanceleilaoThread extends Thread implements Runnable{//,MessageListener {
-
+public class threadCuidaLeilaoPrecoAtual extends Thread implements Runnable,MessageListener{
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
     private JTextField jTextField1;
+    private JTextArea jTextArea;
     private String factoryName = "ConnectionFactory";
     private String topicName = "topic/LeilaoStatus";
     private TopicConnection connect;
     private ClienteLeilao cl;
+    private JTextField jTextField2;
     
-    public darLanceleilaoThread(JTextField jTextField1) throws NamingException, JMSException
+    public threadCuidaLeilaoPrecoAtual(JTextArea jTextArea,JTextField jTextField2) throws NamingException, JMSException
     {
-        this.jTextField1=jTextField1;
          Context jndiContext = new InitialContext();
         TopicConnectionFactory factory = (TopicConnectionFactory) jndiContext.lookup(factoryName);
         Topic topic = (Topic) jndiContext.lookup(topicName);
         this.connect = factory.createTopicConnection();
         TopicSession session = connect.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
         TopicSubscriber subscriber = session.createSubscriber(topic);
+        subscriber.setMessageListener(this);
         connect.start();
+        this.jTextArea=jTextArea;
         meuRegistry mRegistry = new meuRegistry();
         cl = new ClienteLeilao(mRegistry);
+        this.jTextField2=jTextField2;
     }
     
     @Override
-    public void run() {
-            cl.darNovoLance(Integer.parseInt(jTextField1.getText()));
-      }
+    public void onMessage(Message message) {
+        TextMessage textMsg = (TextMessage) message;
+        String text;
+        try {
+            text = textMsg.getText();
+            jTextArea.append(text+"\n");
+            jTextArea.setCaretPosition(jTextArea.getText().length());
+            try {
+                jTextField2.setText(""+cl.getPreco());
+            } catch (RemoteException ex) {
+                Logger.getLogger(darLanceleilaoThread.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (JMSException ex) {
+            ex.printStackTrace();
+        }
+    }
+
 
 }

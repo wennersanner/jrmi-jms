@@ -63,6 +63,11 @@ public class Leiloeiro {
         }
     }
     
+    public void publicarFimLeilao() throws JMSException
+    {
+        publicarLeilao.publish("O vencedor e "+this.nome+" "+produtoLeilao.getNome()+" "+produtoLeilao.getPrecoInicial()+"/"+produtoLeilao.getPrecoAtual());
+    }
+    
     public String getNome()
     {
         return nome;

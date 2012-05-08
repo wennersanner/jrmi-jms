@@ -234,7 +234,7 @@ public class Form_Leilao extends javax.swing.JFrame {
 
     private void botaoPublicarLancePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPublicarLancePressed
         try {
-            daLanceleilaoThread = new darLanceleilaoThread(jTextField1);
+            daLanceleilaoThread = new darLanceleilaoThread(jTextField1,edt_CodigoProduto,edt_Nome);
         } catch (NamingException ex) {
             Logger.getLogger(Form_Leilao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (JMSException ex) {

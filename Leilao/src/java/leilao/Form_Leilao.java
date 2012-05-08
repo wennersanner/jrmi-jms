@@ -39,19 +39,24 @@ public class Form_Leilao extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Leil√£o"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Leil„o"));
 
-        jLabel2.setText("Leil√µes Abertos");
+        jLabel2.setText("Leilıes Abertos");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Lance"));
 
         jLabel1.setText("Valor");
-        jLabel1.setName("lbl_valor");
+        jLabel1.setName("lbl_valor"); // NOI18N
 
         jButton1.setText("Publicar Lance");
-        jButton1.setName("btn_publicarLance");
+        jButton1.setName("btn_publicarLance"); // NOI18N
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botaoPublicarLancePressed(evt);
+            }
+        });
 
-        jTextField1.setName("edt_Valor");
+        jTextField1.setName("edt_Valor"); // NOI18N
 
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -79,11 +84,11 @@ public class Form_Leilao extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados do Leil√£o"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados do Leil„o"));
 
         jLabel3.setText("Valor atual");
 
-        jTextField2.setName("edt_valorAtual");
+        jTextField2.setName("edt_valorAtual"); // NOI18N
 
         org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -93,7 +98,7 @@ public class Form_Leilao extends javax.swing.JFrame {
                 .add(19, 19, 19)
                 .add(jLabel3)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jTextField2)
+                .add(jTextField2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
                 .add(18, 18, 18))
         );
         jPanel3Layout.setVerticalGroup(
@@ -116,7 +121,7 @@ public class Form_Leilao extends javax.swing.JFrame {
                     .add(jPanel1Layout.createSequentialGroup()
                         .add(jLabel2)
                         .add(0, 126, Short.MAX_VALUE))
-                    .add(jScrollPane1))
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -135,7 +140,7 @@ public class Form_Leilao extends javax.swing.JFrame {
                         .addContainerGap()
                         .add(jLabel2)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jScrollPane1)))
+                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -158,6 +163,11 @@ public class Form_Leilao extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botaoPublicarLancePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPublicarLancePressed
+        darLanceleilaoThread daLanceleilaoThread=new darLanceleilaoThread(jTextField1);
+        daLanceleilaoThread.start();
+    }//GEN-LAST:event_botaoPublicarLancePressed
 
     /**
      * @param args the command line arguments

@@ -50,7 +50,6 @@ public class ClienteLeilao implements MessageListener {
                 try 
                 {
                     interfaceleiloeiro=(InterfaceLeiloeiro) meuRegistry.getRegistry().lookup("001");
-                    
                 }
                 catch (RemoteException ex) {
                     ex.printStackTrace();

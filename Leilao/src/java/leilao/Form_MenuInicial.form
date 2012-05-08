@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.1" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -76,15 +76,21 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Criar Leil&#xe3;o"/>
-            <Property name="name" type="java.lang.String" value="btn_CriarLeil&#xe3;o"/>
+            <Property name="text" type="java.lang.String" value="Criar Leillao"/>
+            <Property name="name" type="java.lang.String" value="btn_CriarLeil&#xe3;o" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botaoCriarLeilaoClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Leil&#xf5;es"/>
-            <Property name="name" type="java.lang.String" value="btnLeiloes"/>
+            <Property name="text" type="java.lang.String" value="Leiloes"/>
+            <Property name="name" type="java.lang.String" value="btnLeiloes" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botaoLeiloesPressed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

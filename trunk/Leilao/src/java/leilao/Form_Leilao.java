@@ -53,9 +53,9 @@ public class Form_Leilao extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Leil„o"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Leilao"));
 
-        jLabel2.setText("Leilıes Abertos");
+        jLabel2.setText("Leil√µes Abertos");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Lance"));
 
@@ -98,7 +98,7 @@ public class Form_Leilao extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados do Leil„o"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados do Leilao"));
 
         jLabel3.setText("Valor atual");
 
@@ -156,7 +156,7 @@ public class Form_Leilao extends javax.swing.JFrame {
                         .addContainerGap()
                         .add(jLabel2)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)))
+                        .add(jScrollPane1)))
                 .addContainerGap())
         );
 

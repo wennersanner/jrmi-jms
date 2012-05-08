@@ -4,6 +4,7 @@
  */
 package leilao;
 
+import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.jms.JMSException;
@@ -192,14 +193,21 @@ public class Form_Leilao extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoPublicarLancePressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+            threadCuidaLeilaoPrecoAtual theAtual;
         try {
-            threadCuidaLeilaoPrecoAtual theAtual=new threadCuidaLeilaoPrecoAtual(jTextArea1, jTextField2);
-            theAtual.start();
+            theAtual = new threadCuidaLeilaoPrecoAtual(jTextArea1, jTextField2);
+             theAtual.start();
         } catch (NamingException ex) {
             Logger.getLogger(Form_Leilao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (JMSException ex) {
             Logger.getLogger(Form_Leilao.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RemoteException ex) {
+            Logger.getLogger(Form_Leilao.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Form_Leilao.class.getName()).log(Level.SEVERE, null, ex);
         }
+           
+
     }//GEN-LAST:event_formWindowOpened
 
     /**

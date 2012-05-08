@@ -13,6 +13,6 @@ import java.rmi.RemoteException;
  */
 public interface InterfaceLeiloeiro extends Remote{
     
-    void darLance(int lance) throws RemoteException;
+    void darLance(String nome,int lance) throws RemoteException;
     int getPrecoAtual() throws RemoteException;
 }

@@ -10,19 +10,13 @@
  */
 package leilao;
 
-import java.rmi.RemoteException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.jms.Message;
-import javax.jms.MessageListener;
-
 /**
  *
  * @author tiago
  */
 public class Form_Leiloeiro3 extends javax.swing.JFrame{
     
-    
+    private acompanhamentoThread acompThread;
     /** Creates new form Form_Leiloeiro3 */
     public Form_Leiloeiro3() {
         initComponents();
@@ -80,17 +74,21 @@ public class Form_Leiloeiro3 extends javax.swing.JFrame{
         jTextField3.setName("edtTempo"); // NOI18N
 
         btn_TerminarLeilao.setText("Terminar Leilao");
+        btn_TerminarLeilao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botaoTerminarLeilaoPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btn_TerminarLeilao)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btn_TerminarLeilao))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,7 +146,7 @@ public class Form_Leiloeiro3 extends javax.swing.JFrame{
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(jLabel3)))
-                        .addGap(0, 80, Short.MAX_VALUE)))
+                        .addGap(0, 82, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -183,9 +181,13 @@ public class Form_Leiloeiro3 extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCriarLeilaoPressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoCriarLeilaoPressed
-        acompanhamentoThread acompThread=new acompanhamentoThread(jTextArea1, jTextField1, jTextField2, jTextField3);
+        acompThread=new acompanhamentoThread(jTextArea1, jTextField1, jTextField2, jTextField3);
         acompThread.start();
     }//GEN-LAST:event_botaoCriarLeilaoPressed
+
+    private void botaoTerminarLeilaoPressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoTerminarLeilaoPressed
+        acompThread.setContinuaLeilao(false);
+    }//GEN-LAST:event_botaoTerminarLeilaoPressed
 
     /**
      * @param args the command line arguments

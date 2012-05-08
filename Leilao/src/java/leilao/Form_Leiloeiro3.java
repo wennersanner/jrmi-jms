@@ -55,7 +55,7 @@ public class Form_Leiloeiro3 extends javax.swing.JFrame{
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Leiloeiro"));
         jPanel1.setName("form_leiloeiro"); // NOI18N
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Criar Leilão"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Criar Leilao"));
 
         jButton1.setText("Criar");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -96,7 +96,7 @@ public class Form_Leiloeiro3 extends javax.swing.JFrame{
                     .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                     .addComponent(jTextField3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

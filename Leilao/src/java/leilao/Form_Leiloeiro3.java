@@ -13,13 +13,16 @@ package leilao;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.jms.Message;
+import javax.jms.MessageListener;
 
 /**
  *
  * @author tiago
  */
-public class Form_Leiloeiro3 extends javax.swing.JFrame {
-
+public class Form_Leiloeiro3 extends javax.swing.JFrame{
+    
+    
     /** Creates new form Form_Leiloeiro3 */
     public Form_Leiloeiro3() {
         initComponents();
@@ -152,7 +155,6 @@ public class Form_Leiloeiro3 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -160,7 +162,6 @@ public class Form_Leiloeiro3 extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 354, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -171,7 +172,7 @@ public class Form_Leiloeiro3 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCriarLeilaoPressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoCriarLeilaoPressed
-        acompanhamentoThread acompThread=new acompanhamentoThread(jTextArea1,jTextField1,jTextField2,jTextField3);
+        acompanhamentoThread acompThread=new acompanhamentoThread(jTextArea1, jTextField1, jTextField2, jTextField3);
         acompThread.start();
     }//GEN-LAST:event_botaoCriarLeilaoPressed
 
@@ -201,11 +202,12 @@ public class Form_Leiloeiro3 extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Form_Leiloeiro3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
+                
                 new Form_Leiloeiro3().setVisible(true);
             }
         });
@@ -224,4 +226,6 @@ public class Form_Leiloeiro3 extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
+
+ 
 }

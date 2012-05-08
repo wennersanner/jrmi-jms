@@ -4,11 +4,10 @@
  */
 package leilao;
 
-import java.rmi.AccessException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.jms.JMSException;
 import javax.naming.NamingException;
 
@@ -22,7 +21,8 @@ public class Leiloeiro {
     private meuRegistry meuRegistry;
     private String identificacaoProcesso;
     private JmsPublisher publicarLeilao;
-
+    private InterfaceLeiloeiro refLeiloeiro;
+    
     public Leiloeiro(ProdutoLeilao produtoLeilao, meuRegistry mRegistry, String identificacaoProcesso) throws RemoteException {
         this.produtoLeilao = produtoLeilao;
         this.identificacaoProcesso = identificacaoProcesso;
@@ -34,11 +34,11 @@ public class Leiloeiro {
         } catch (NamingException ex) {
             ex.printStackTrace();
         }
-
+        refLeiloeiro = new ClasseServenteLeiloeiro(this);
+        
     }
 
-    public void publicarLeilao() throws RemoteException {
-        InterfaceLeiloeiro refLeiloeiro = new ClasseServenteLeiloeiro(this);
+    public String publicarLeilao() throws RemoteException {
         try {
             meuRegistry.getRegistry().rebind(identificacaoProcesso, refLeiloeiro);
             publicarLeilao.publish(identificacaoProcesso + " " + produtoLeilao.getCodigo() + " " + produtoLeilao.getNome() + " " + produtoLeilao.getPrecoInicial() + "/" + produtoLeilao.getPrecoAtual() + " " + produtoLeilao.getTempoTerminoLeilao());
@@ -47,6 +47,7 @@ public class Leiloeiro {
         } catch (JMSException ex) {
             ex.printStackTrace();
         }
+            return (identificacaoProcesso + " " + produtoLeilao.getCodigo() + " " + produtoLeilao.getNome() + " " + produtoLeilao.getPrecoInicial() + "/" + produtoLeilao.getPrecoAtual() + " " + produtoLeilao.getTempoTerminoLeilao()+"\n");
     }
 
     public void verificarLance(int lance) {

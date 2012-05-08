@@ -23,18 +23,20 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws InterruptedException, RemoteException, AlreadyBoundException, NamingException, JMSException {
-        // TODO code application logic here
-        //      LocateRegistry.createRegistry(1099);
-        meuRegistry mRegistry = new meuRegistry();
-        try {
-            ClienteLeilao cl = new ClienteLeilao(mRegistry);
-            Thread.sleep(5000);
-            cl.darNovoLance(50);
-        } catch (NamingException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (JMSException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+        Form_MenuInicial fmi=new Form_MenuInicial();
+        fmi.setVisible(true);
+        
+//                meuRegistry mRegistry = new meuRegistry();
+//        try {
+//            ClienteLeilao cl = new ClienteLeilao(mRegistry);
+//            Thread.sleep(7500);
+//            cl.darNovoLance(15);
+//        } catch (NamingException ex) {
+//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (JMSException ex) {
+//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
     }
 }

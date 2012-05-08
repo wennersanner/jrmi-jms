@@ -32,13 +32,23 @@ public class Form_MenuInicial extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Leilão"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Leil�o"));
 
-        jButton1.setText("Criar Leilão");
-        jButton1.setName("btn_CriarLeilão");
+        jButton1.setText("Criar Leillao");
+        jButton1.setName("btn_CriarLeil�o"); // NOI18N
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botaoCriarLeilaoClicked(evt);
+            }
+        });
 
-        jButton2.setText("Leilões");
-        jButton2.setName("btnLeiloes");
+        jButton2.setText("Leiloes");
+        jButton2.setName("btnLeiloes"); // NOI18N
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botaoLeiloesPressed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -79,6 +89,18 @@ public class Form_MenuInicial extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botaoCriarLeilaoClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoCriarLeilaoClicked
+        Form_Leiloeiro3 fl=new Form_Leiloeiro3();
+        fl.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_botaoCriarLeilaoClicked
+
+    private void botaoLeiloesPressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoLeiloesPressed
+        Form_Leilao fl=new Form_Leilao();
+        fl.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_botaoLeiloesPressed
 
     /**
      * @param args the command line arguments

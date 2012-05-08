@@ -202,7 +202,11 @@ public class Form_Leilao extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Envento de publicar um lance, para tal foi criada uma thread daLanceleilaoThread que se encarrega de enviar o lance
+     * ao leiloeiro;
+     * @param evt 
+     */
     private void botaoPublicarLancePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoPublicarLancePressed
         try {
             daLanceleilaoThread = new darLanceleilaoThread(jTextField1,edt_CodigoProduto,edt_Nome);
@@ -213,7 +217,12 @@ public class Form_Leilao extends javax.swing.JFrame {
         } 
         daLanceleilaoThread.start();
     }//GEN-LAST:event_botaoPublicarLancePressed
-
+    /**
+     * Ao criar o form é inializado a comunicacao via JMS para receber as mensagens de leiloes 
+     * existentes, para isto e inicializado a thread threadCuidaLeilaoPrecoAtual
+     * a qual tambem eh responsavel por atualizar o form
+     * @param evt 
+     */
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
             threadCuidaLeilaoPrecoAtual theAtual;
         try {

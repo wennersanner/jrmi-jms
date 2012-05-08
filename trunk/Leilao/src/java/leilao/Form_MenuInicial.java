@@ -92,13 +92,19 @@ public class Form_MenuInicial extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Envento click do mouse no botão "Criar Leiloes", abre Form_Leiloeiro3;
+     * @param evt 
+     */
     private void botaoCriarLeilaoClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoCriarLeilaoClicked
         Form_Leiloeiro3 fl=new Form_Leiloeiro3();
         fl.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_botaoCriarLeilaoClicked
-
+    /**
+     * Envento click do mouse no botão "Leilões", abre Form_Leilao;
+     * @param evt 
+     */
     private void botaoLeiloesPressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoLeiloesPressed
         Form_Leilao fl=new Form_Leilao();
         fl.setVisible(true);

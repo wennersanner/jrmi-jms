@@ -22,7 +22,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws InterruptedException, RemoteException, AlreadyBoundException, NamingException, JMSException {
-
+        //Inicializa o menu principal
         Form_MenuInicial fmi=new Form_MenuInicial();
         fmi.setVisible(true);
         

@@ -74,7 +74,7 @@ public class acompanhamentoThread extends Thread implements Runnable {
                 {
                     continuaLeilao=false;
                     try {
-                        mRegistry.getRegistry().unbind("001");
+                        mRegistry.getRegistry().unbind(leiloeiro.getIdentificacao());
                     } catch (NotBoundException ex) {
                         Logger.getLogger(acompanhamentoThread.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (AccessException ex) {
@@ -90,7 +90,7 @@ public class acompanhamentoThread extends Thread implements Runnable {
                 }
             }
             try {
-                        mRegistry.getRegistry().unbind("001");
+                        mRegistry.getRegistry().unbind(leiloeiro.getIdentificacao());
                         
                     } catch (NotBoundException ex) {
                         Logger.getLogger(acompanhamentoThread.class.getName()).log(Level.SEVERE, null, ex);

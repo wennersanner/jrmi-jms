@@ -26,6 +26,8 @@ public class Leiloeiro {
     private JmsPublisher publicarLeilao;
     private InterfaceLeiloeiro refLeiloeiro;
     private String nome;
+    private InterfaceCliente [] refClientes;
+    private int pointerRefClientes=0;
     /**
      * Conecta via JMS
      * Cria a calsse servente do leiloeiro
@@ -37,6 +39,7 @@ public class Leiloeiro {
      */
     
     public Leiloeiro(ProdutoLeilao produtoLeilao, meuRegistry mRegistry, String identificacaoProcesso) throws RemoteException {
+        refClientes=new InterfaceCliente[50];
         this.produtoLeilao = produtoLeilao;
         this.identificacaoProcesso = identificacaoProcesso;
         this.meuRegistry = mRegistry;
@@ -72,24 +75,35 @@ public class Leiloeiro {
      * @param nome Nome da pessoa que deu o lance
      * @param lance Valor do lance dado
      */
-    public void verificarLance(String nome,int lance) {
+    public void verificarLance(InterfaceCliente refCli,String nome,int lance) throws RemoteException {
         if (lance > produtoLeilao.getPrecoAtual()) {
             produtoLeilao.setPrecoAtual(lance);
             this.nome=nome;
+            refClientes[pointerRefClientes]= refCli;
+            pointerRefClientes++;
+            for(int i=0;i<refClientes.length;i++)
+            {
+                refClientes[i].notificacao(identificacaoProcesso + " " + produtoLeilao.getCodigo() + " " + produtoLeilao.getNome() + " " + produtoLeilao.getPrecoInicial() + "/" + produtoLeilao.getPrecoAtual() + " " + produtoLeilao.getTempoTerminoLeilao());
+            }
             try {
                 publicarLeilao.publish(identificacaoProcesso + " " + produtoLeilao.getCodigo() + " " + produtoLeilao.getNome() + " " + produtoLeilao.getPrecoInicial() + "/" + produtoLeilao.getPrecoAtual() + " " + produtoLeilao.getTempoTerminoLeilao());
             } catch (JMSException ex) {
                 ex.printStackTrace();
             }
+            
         }
     }
     /**
      * Publica o fim do leilao com o nome do vencedor, produto e valor negociado 
      * @throws JMSException 
      */
-    public void publicarFimLeilao() throws JMSException
+    public void publicarFimLeilao() throws JMSException, RemoteException
     {
-        publicarLeilao.publish("O vencedor e "+this.nome+" "+produtoLeilao.getNome()+" "+produtoLeilao.getPrecoInicial()+"/"+produtoLeilao.getPrecoAtual());
+         publicarLeilao.publish("O vencedor e "+this.nome+" "+produtoLeilao.getNome()+" "+produtoLeilao.getPrecoInicial()+"/"+produtoLeilao.getPrecoAtual());
+         for(int i=0;i<refClientes.length;i++)
+            {
+                refClientes[i].fimLeilao("O vencedor e "+this.nome+" "+produtoLeilao.getNome()+" "+produtoLeilao.getPrecoInicial()+"/"+produtoLeilao.getPrecoAtual());
+            }
     }
     /**
      * Retorna nome 
@@ -117,5 +131,10 @@ public class Leiloeiro {
         } catch (JMSException ex) {
             Logger.getLogger(Leiloeiro.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public String getIdentificacao()
+    {
+        return identificacaoProcesso;
     }
 }

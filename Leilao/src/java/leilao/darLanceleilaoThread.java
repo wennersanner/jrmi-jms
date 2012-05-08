@@ -4,6 +4,7 @@
  */
 package leilao;
 
+import java.rmi.RemoteException;
 import javax.swing.JTextField;
 import javax.jms.*;
 import javax.naming.NamingException;
@@ -18,7 +19,8 @@ public class darLanceleilaoThread extends Thread implements Runnable{
 
     private JTextField jTextField1,edt_codProduto,edt_nome;
     private ClienteLeilao cl;
-    
+    private meuRegistry mRegistry;
+    private threadCuidaLeilaoPrecoAtual threadCuidaLeilaoPrecoAtual;
     /**
      * Responsavel por prover a comunicação JRMI
      * @param jTextField1 valor do lance dados
@@ -28,13 +30,14 @@ public class darLanceleilaoThread extends Thread implements Runnable{
      * @throws JMSException 
      */
     
-    public darLanceleilaoThread(JTextField jTextField1,JTextField edt_codProduto,JTextField edt_nome) throws NamingException, JMSException
+    public darLanceleilaoThread(JTextField jTextField1,JTextField edt_codProduto,JTextField edt_nome,threadCuidaLeilaoPrecoAtual threadCuidaLeilaoPrecoAtual) throws NamingException, JMSException, RemoteException
     {
         this.jTextField1=jTextField1;
-        meuRegistry mRegistry = new meuRegistry();
+        mRegistry = new meuRegistry();
         cl = new ClienteLeilao(mRegistry);
         this.edt_codProduto=edt_codProduto;
         this.edt_nome=edt_nome;
+        this.threadCuidaLeilaoPrecoAtual=threadCuidaLeilaoPrecoAtual;
     }
     
     @Override
@@ -44,6 +47,7 @@ public class darLanceleilaoThread extends Thread implements Runnable{
      */
     public void run() {
             cl.darNovoLance(edt_nome.getText(),edt_codProduto.getText(),Integer.parseInt(jTextField1.getText()));
-      }
+            
+    }
 
 }

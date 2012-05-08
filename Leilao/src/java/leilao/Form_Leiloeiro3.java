@@ -12,7 +12,10 @@ package leilao;
 
 /**
  *
- * @author tiago
+ * @author Geovane Ferreira
+ * @author Tiago 
+ * 
+ * 
  */
 public class Form_Leiloeiro3 extends javax.swing.JFrame{
     

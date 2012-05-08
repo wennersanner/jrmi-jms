@@ -16,7 +16,10 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author tiago
+ * @author Geovane Ferreira
+ * @author Tiago 
+ * 
+ * 
  */
 public class acompanhamentoThread extends Thread implements Runnable {
 

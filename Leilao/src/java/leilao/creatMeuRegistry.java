@@ -9,7 +9,10 @@ import java.rmi.registry.LocateRegistry;
 
 /**
  *
- * @author geovanevinicius
+ * @author Geovane Ferreira
+ * @author Tiago 
+ * 
+ * 
  */
 public class creatMeuRegistry {
     

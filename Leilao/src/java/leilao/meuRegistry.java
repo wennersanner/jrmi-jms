@@ -13,7 +13,10 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author tiago
+ * @author Geovane Ferreira
+ * @author Tiago 
+ * 
+ * 
  */
 public class meuRegistry {
     

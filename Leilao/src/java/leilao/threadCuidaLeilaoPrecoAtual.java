@@ -17,7 +17,10 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 /**
  *
- * @author tiago
+ * @author Geovane Ferreira
+ * @author Tiago 
+ * 
+ * 
  */
 public class threadCuidaLeilaoPrecoAtual extends Thread implements Runnable,MessageListener{
 /*

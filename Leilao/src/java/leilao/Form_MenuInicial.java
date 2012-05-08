@@ -6,7 +6,10 @@ package leilao;
 
 /**
  *
- * @author geovanevinicius
+ * @author Geovane Ferreira
+ * @author Tiago 
+ * 
+ * 
  */
 public class Form_MenuInicial extends javax.swing.JFrame {
 

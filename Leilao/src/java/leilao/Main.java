@@ -11,7 +11,10 @@ import javax.naming.NamingException;
 
 /**
  *
- * @author geovanevinicius
+ * @author Geovane Ferreira
+ * @author Tiago 
+ * 
+ * 
  */
 public class Main {
 

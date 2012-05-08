@@ -9,7 +9,10 @@ import java.rmi.RemoteException;
 
 /**
  *
- * @author tiago
+ * @author Geovane Ferreira
+ * @author Tiago 
+ * 
+ * 
  */
 public interface InterfaceLeiloeiro extends Remote{
     

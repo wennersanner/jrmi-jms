@@ -6,7 +6,10 @@ package leilao;
 
 /**
  *
- * @author tiago
+ * @author Geovane Ferreira
+ * @author Tiago 
+ * 
+ * 
  */
 public class ProdutoLeilao 
 {

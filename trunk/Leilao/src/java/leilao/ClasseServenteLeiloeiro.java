@@ -9,7 +9,10 @@ import java.rmi.server.UnicastRemoteObject;
 
 /**
  *
- * @author geovanevinicius
+ * @author Geovane Ferreira
+ * @author Tiago 
+ * 
+ * 
  */
 public class ClasseServenteLeiloeiro extends UnicastRemoteObject implements InterfaceLeiloeiro{
 

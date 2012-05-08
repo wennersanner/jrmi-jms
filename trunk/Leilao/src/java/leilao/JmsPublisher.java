@@ -5,7 +5,10 @@
 package leilao;
 /**
  *
- * @author geovanevinicius
+ * @author Geovane Ferreira
+ * @author Tiago 
+ * 
+ * 
  */
 import javax.jms.*;
 import javax.naming.Context;

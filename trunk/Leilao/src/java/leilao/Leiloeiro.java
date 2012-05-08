@@ -22,6 +22,7 @@ public class Leiloeiro {
     private String identificacaoProcesso;
     private JmsPublisher publicarLeilao;
     private InterfaceLeiloeiro refLeiloeiro;
+    private String nome;
     
     public Leiloeiro(ProdutoLeilao produtoLeilao, meuRegistry mRegistry, String identificacaoProcesso) throws RemoteException {
         this.produtoLeilao = produtoLeilao;
@@ -50,9 +51,10 @@ public class Leiloeiro {
             return (identificacaoProcesso + " " + produtoLeilao.getCodigo() + " " + produtoLeilao.getNome() + " " + produtoLeilao.getPrecoInicial() + "/" + produtoLeilao.getPrecoAtual() + " " + produtoLeilao.getTempoTerminoLeilao()+"\n");
     }
 
-    public void verificarLance(int lance) {
+    public void verificarLance(String nome,int lance) {
         if (lance > produtoLeilao.getPrecoAtual()) {
             produtoLeilao.setPrecoAtual(lance);
+            this.nome=nome;
             try {
                 publicarLeilao.publish(identificacaoProcesso + " " + produtoLeilao.getCodigo() + " " + produtoLeilao.getNome() + " " + produtoLeilao.getPrecoInicial() + "/" + produtoLeilao.getPrecoAtual() + " " + produtoLeilao.getTempoTerminoLeilao());
             } catch (JMSException ex) {
@@ -61,8 +63,21 @@ public class Leiloeiro {
         }
     }
     
+    public String getNome()
+    {
+        return nome;
+    }
+    
     public int getPrecoAtual()
     {
         return produtoLeilao.getPrecoAtual();
+    }
+    public void closePublish()
+    {
+        try {
+            publicarLeilao.close();
+        } catch (JMSException ex) {
+            Logger.getLogger(Leiloeiro.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

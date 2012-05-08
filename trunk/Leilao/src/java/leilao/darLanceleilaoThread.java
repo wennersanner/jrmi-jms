@@ -4,14 +4,8 @@
  */
 package leilao;
 
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import java.rmi.RemoteException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.jms.*;
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
 /**
  *

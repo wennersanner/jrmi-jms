@@ -51,4 +51,9 @@ public class ProdutoLeilao
     {
         this.precoAtual=precoAtual;
     }
+    
+    public void setTempoTerminoLeilao(int temp)
+    {
+        this.tempoTerminoLeilao=temp;
+    }
 }

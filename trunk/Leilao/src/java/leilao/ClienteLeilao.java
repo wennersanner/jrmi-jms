@@ -22,6 +22,7 @@ public class ClienteLeilao {
 
     private meuRegistry meuRegistry;
     private InterfaceLeiloeiro interfaceleiloeiro;
+    private String nome="teste";
 
     public ClienteLeilao(meuRegistry meuRegistry) throws NamingException, JMSException {
         this.meuRegistry = meuRegistry;
@@ -32,12 +33,11 @@ public class ClienteLeilao {
         } catch (NotBoundException ex) {
             Logger.getLogger(ClienteLeilao.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public void darNovoLance(int lance) {
         try {
-            interfaceleiloeiro.darLance(lance);
+            interfaceleiloeiro.darLance(nome,lance);
         } catch (RemoteException ex) {
             Logger.getLogger(ClienteLeilao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -45,5 +45,10 @@ public class ClienteLeilao {
 
     public int getPreco() throws RemoteException {
             return interfaceleiloeiro.getPrecoAtual();
+    }
+    
+    public String getNome()
+    {
+        return nome;
     }
 }

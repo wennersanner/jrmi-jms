@@ -32,7 +32,7 @@ public class threadCuidaLeilaoPrecoAtual extends Thread implements Runnable,Mess
     private ClienteLeilao cl;
     private JTextField jTextField2;
     
-    public threadCuidaLeilaoPrecoAtual(JTextArea jTextArea,JTextField jTextField2) throws NamingException, JMSException
+    public threadCuidaLeilaoPrecoAtual(JTextArea jTextArea,JTextField jTextField2) throws NamingException, JMSException, RemoteException, InterruptedException
     {
          Context jndiContext = new InitialContext();
         TopicConnectionFactory factory = (TopicConnectionFactory) jndiContext.lookup(factoryName);

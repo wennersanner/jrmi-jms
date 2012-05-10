@@ -6,6 +6,7 @@ package leilao;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,12 +23,15 @@ public class ClasseServenteInterfaceLeilao extends UnicastRemoteObject implement
     @Override
     public void notificacao(String notificacao) throws RemoteException{
         clienteLeilao.notificacao(notificacao);
-        System.out.println(notificacao);
+        System.out.println("NOTIFICACAO : " + notificacao);
     }
 
     @Override
     public void fimLeilao(String fimLeilao) throws RemoteException{
+        JOptionPane.showMessageDialog(null, fimLeilao);  
         System.out.println(fimLeilao);
+        
+
     }
     
 }

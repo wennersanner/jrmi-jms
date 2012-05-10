@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.jms.JMSException;
 import javax.naming.NamingException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -79,31 +80,32 @@ public class Leiloeiro {
         if (lance > produtoLeilao.getPrecoAtual()) {
             produtoLeilao.setPrecoAtual(lance);
             this.nome=nome;
-            refClientes[pointerRefClientes]= refCli;
-            pointerRefClientes++;
-            for(int i=0;i<refClientes.length;i++)
+            refClientes[pointerRefClientes] = refCli;
+            for(int i=0;i < pointerRefClientes;i++)
             {
-                refClientes[i].notificacao(identificacaoProcesso + " " + produtoLeilao.getCodigo() + " " + produtoLeilao.getNome() + " " + produtoLeilao.getPrecoInicial() + "/" + produtoLeilao.getPrecoAtual() + " " + produtoLeilao.getTempoTerminoLeilao());
+                refClientes[i].notificacao("JRMi :"+identificacaoProcesso + " " + produtoLeilao.getCodigo() + " " + produtoLeilao.getNome() + " " + produtoLeilao.getPrecoInicial() + "/" + produtoLeilao.getPrecoAtual() + " " + produtoLeilao.getTempoTerminoLeilao());
             }
             try {
                 publicarLeilao.publish(identificacaoProcesso + " " + produtoLeilao.getCodigo() + " " + produtoLeilao.getNome() + " " + produtoLeilao.getPrecoInicial() + "/" + produtoLeilao.getPrecoAtual() + " " + produtoLeilao.getTempoTerminoLeilao());
             } catch (JMSException ex) {
                 ex.printStackTrace();
             }
-            
+            pointerRefClientes++;
+
         }
     }
     /**
-     * Publica o fim do leilao com o nome do vencedor, produto e valor negociado 
+     * Publica o fim do leilao com o nome do vencedor, produto e valor negociado em JRMS e JMS
      * @throws JMSException 
      */
     public void publicarFimLeilao() throws JMSException, RemoteException
     {
          publicarLeilao.publish("O vencedor e "+this.nome+" "+produtoLeilao.getNome()+" "+produtoLeilao.getPrecoInicial()+"/"+produtoLeilao.getPrecoAtual());
-         for(int i=0;i<refClientes.length;i++)
+         for(int i=0;i<pointerRefClientes;i++)
             {
-                refClientes[i].fimLeilao("O vencedor e "+this.nome+" "+produtoLeilao.getNome()+" "+produtoLeilao.getPrecoInicial()+"/"+produtoLeilao.getPrecoAtual());
+                refClientes[i].fimLeilao("JRMi: O vencedor e "+this.nome+" "+produtoLeilao.getNome()+" "+produtoLeilao.getPrecoInicial()+"/"+produtoLeilao.getPrecoAtual());
             }
+              JOptionPane.showMessageDialog(null, "Jrmi: O vencedor e :"+this.nome+" "+produtoLeilao.getNome()+" "+produtoLeilao.getPrecoInicial()+"/"+produtoLeilao.getPrecoAtual());  
     }
     /**
      * Retorna nome 

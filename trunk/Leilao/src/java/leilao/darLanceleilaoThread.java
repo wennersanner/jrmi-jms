@@ -39,7 +39,11 @@ public class darLanceleilaoThread extends Thread implements Runnable{
         this.edt_nome=edt_nome;
         this.threadCuidaLeilaoPrecoAtual=threadCuidaLeilaoPrecoAtual;
     }
-    
+    public void teste2(String msg){
+          jTextField1.setText("GGGGGGGGGGG"+msg); 
+             
+    }
+   
     @Override
     /**
      * Envia o lance

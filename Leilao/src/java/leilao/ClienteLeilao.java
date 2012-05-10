@@ -13,6 +13,7 @@ import javax.jms.*;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 /**
  *
@@ -27,6 +28,7 @@ public class ClienteLeilao {
     private InterfaceLeiloeiro interfaceleiloeiro;
     private InterfaceCliente refCliente;
     private threadCuidaLeilaoPrecoAtual threadCuidaLeilaoPrecoAtual;
+    private darLanceleilaoThread _darLanceleilaoThread;
     
     public ClienteLeilao(meuRegistry meuRegistry) throws NamingException, JMSException, RemoteException {
         this.meuRegistry = meuRegistry;
@@ -46,9 +48,7 @@ public class ClienteLeilao {
         
         } catch (RemoteException ex) {
             Logger.getLogger(ClienteLeilao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    
+        }    
     }
 
     public InterfaceCliente getServ()

@@ -25,6 +25,7 @@ public class Form_Leilao extends javax.swing.JFrame {
      */
      private darLanceleilaoThread daLanceleilaoThread;
      private threadCuidaLeilaoPrecoAtual theAtual;   
+
     public Form_Leilao() {
         initComponents();
         

@@ -50,6 +50,7 @@ public class threadCuidaLeilaoPrecoAtual extends Thread implements Runnable,Mess
         cl = new ClienteLeilao(mRegistry);
         this.jTextField2=jTextField2;
     }
+    
     /**
      * Ao receber uma mensgem via JMS, a mesma é enviada a tela do Leilao;
      * @param message 
@@ -69,6 +70,5 @@ public class threadCuidaLeilaoPrecoAtual extends Thread implements Runnable,Mess
             ex.printStackTrace();
         }
     }
-
 
 }
